@@ -14,17 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/index', function () {
     return view('admin.dashboard');
 });
+Route::resource('category','CategoryController');
 
-Route::get('/index/test', function () {
-    return view('test');
-});
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/index', function () {
+//    return view('admin.dashboard');
+//});
+//
+//Route::get('/index/test', function () {
+//    return view('test');
+//});
+//
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');
