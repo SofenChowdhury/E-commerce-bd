@@ -16,6 +16,6 @@
 
 <body id="page-top">
 
-@notifyCss
-@include('notify::messages')
-@notifyJs
+    @notifyCss
+        @include('notify::messages')
+    @notifyJs
