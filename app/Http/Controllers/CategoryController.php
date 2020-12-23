@@ -70,9 +70,10 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -82,9 +83,20 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $image = $category->image;
+        if ($request->file('image')){
+            $image = $request->file('image')->store('public/files');
+            \Storage::delete($category->image);
+        }
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->image = $image;
+        $category->save();
+        notify()->success('Category updated successfully');
+        return redirect()->route('category.index');
     }
 
     /**

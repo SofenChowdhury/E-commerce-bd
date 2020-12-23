@@ -8,60 +8,63 @@
             <li class="breadcrumb-item active" aria-current="page">Category</li>
         </ol>
     </div>
-
     <div class="row justify-content-center">
         @if(Session::has('message'))
             <div class="alert alert-success">
                 {{Session::get('message')}}
             </div>
         @endif
-
         <div class="col-lg-10">
-            <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">@csrf
+            <form action="{{route('category.update',[$category->id])}}" method="POST" enctype="multipart/form-data">@csrf
+                {{method_field('PUT')}}
                 <div class="card mb-6">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Create Category</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Update Category</h6>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">Name</label>
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="" aria-describedby=""
-                                   placeholder="Enter name of category">
+                                   value="{{$category->name}}">
                             @error('name')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                             @enderror
-
                         </div>
                         <div class="form-group">
                             <label for="">Description</label>
-                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" placeholder="Enter description of category"></textarea>
+                            <textarea name="description" class="form-control @error('description') is-invalid @enderror">{{$category->description}}</textarea>
                             @error('description')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                             @enderror
-
                         </div>
                         <div class="form-group">
                             <div class="custom-file">
+
                                 <label class="custom-file-label" for="customFile">Choose file (png or jpg or jpeg only)</label>
-                                <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="customFile" >
+                                <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="customFile">
+                                <br>
+                                <br>
+                                <img src="{{Storage::url($category->image)}}" width="100">
                                 @error('image')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-
+                            <br>
+                            <br>
+                            <div class="form-group" style="padding-left: 1375px">
+                                <button type="submit" class="btn btn-primary" >Update</button>
+                            </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </form>
-
         </div>
     </div>
 @endsection
