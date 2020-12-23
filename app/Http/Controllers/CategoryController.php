@@ -85,6 +85,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'name'=>'required',
+            'description'=>'required',
+            'image'=>'mimes:png,jpg,jpeg'
+        ]);
         $category = Category::find($id);
         $image = $category->image;
         if ($request->file('image')){
