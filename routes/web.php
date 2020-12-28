@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('admin.dashboard');
 });
 Route::resource('category','CategoryController');
-
+Route::resource('subcategory','SubcategoryController');
 
 
 //Route::get('/index', function () {

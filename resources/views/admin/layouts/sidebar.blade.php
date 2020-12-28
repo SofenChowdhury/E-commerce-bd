@@ -16,16 +16,30 @@
         Features
     </div>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
-           aria-expanded="true" aria-controls="collapseBootstrap">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrapCategory"
+           aria-expanded="true" aria-controls="collapseBootstrapCategory">
             <i class="far fa-fw fa-window-maximize"></i>
             <span>Category</span>
         </a>
-        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="collapseBootstrapCategory" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Category</h6>
                 <a class="collapse-item" href="{{route('category.index')}}">View</a>
                 <a class="collapse-item" href="{{route('category.create')}}">Create</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrapSubcategory"
+           aria-expanded="true" aria-controls="collapseBootstrapSubcategory">
+            <i class="far fa-fw fa-window-maximize"></i>
+            <span>Subcategory</span>
+        </a>
+        <div id="collapseBootstrapSubcategory" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Subcategory</h6>
+                <a class="collapse-item" href="{{route('subcategory.index')}}">View</a>
+                <a class="collapse-item" href="{{route('subcategory.create')}}">Create</a>
             </div>
         </div>
     </li>
