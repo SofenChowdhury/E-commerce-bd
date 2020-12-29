@@ -38,11 +38,23 @@ class ProductController extends Controller
     {
         $this->validate($request,[
            'name'=>'required|min:3',
-            'description'=>'required',
             'image'=>'required|mimes:jpg,jpeg,png',
+            'description'=>'required',
             'price'=>'required',
             'category'=>'required'
         ]);
+        $image = $request->file('image')->store('public/product');
+        Product::create([
+           'name'=>$request->name,
+           'image'=>$image,
+            'description'=>$request->description,
+            'price'=>$request->price,
+            'additional_info'=>$request->additional_info,
+            'category_id'=>$request->category,
+            'subcategory_id'=>$request->subcategory
+        ]);
+        notify()->success('Product created successfully');
+        return redirect()->back();
     }
 
     /**

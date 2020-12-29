@@ -92,17 +92,7 @@
                             <label for="category">Subcategory</label>
                             <select name="subcategory" class="form-control @error('subcategory') is-invalid @enderror">
                                 <option value="">Select Subcategory</option>
-{{--                                @foreach(App\Subcategory::all() as $subcategory)--}}
-{{--                                    <option value="{{$subcategory->id}}">--}}
-{{--                                        {{$subcategory->name}}--}}
-{{--                                    </option>--}}
-{{--                                @endforeach--}}
                             </select>
-{{--                            @error('subcategory')--}}
-{{--                            <span class="invalid-feedback" role="alert">--}}
-{{--                                        <strong>{{ $message }}</strong>--}}
-{{--                                    </span>--}}
-{{--                            @enderror--}}
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
