@@ -17,7 +17,8 @@
         @endif
 
         <div class="col-lg-10">
-            <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">@csrf
+            <form action="{{route('product.update',[$product->id])}}" method="POST" enctype="multipart/form-data">@csrf
+                {{method_field('PUT')}}
                 <div class="card mb-6">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Update Product</h6>

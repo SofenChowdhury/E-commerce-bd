@@ -91,15 +91,19 @@ class CategoryController extends Controller
             'image'=>'mimes:png,jpg,jpeg'
         ]);
         $category = Category::find($id);
-        $image = $category->image;
+        $filename = $category->image;
         if ($request->file('image')){
             $image = $request->file('image')->store('public/files');
-            \Storage::delete($category->image);
+            \Storage::delete($filename);
+            $category->name = $request->name;
+            $category->description = $request->description;
+            $category->image = $image;
+            $category->save();
+        }else{
+            $category->name = $request->name;
+            $category->description = $request->description;
+            $category->save();
         }
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $category->image = $image;
-        $category->save();
         notify()->success('Category updated successfully');
         return redirect()->route('category.index');
     }

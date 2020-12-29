@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use App\Subcategory;
 use Illuminate\Http\Request;
@@ -88,9 +89,38 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request,$id)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|min:3',
+            'description'=>'required',
+            'price'=>'required',
+            'category'=>'required'
+        ]);
+        $product = Product::find($id);
+        $filename = $product->image;
+        if ($request->file('image')){
+            $image = $request->file('image')->store('public/files');
+            \Storage::delete($filename);
+            $product->name = $request->name;
+            $product->image = $image;
+            $product->description = $request->description;
+            $product->additional_info = $request->additional_info;
+            $product->price = $request->price;
+            $product->category_id = $request->category;
+            $product->subcategory_id = $request->subcategory;
+            $product->save();
+        }else{
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->additional_info = $request->additional_info;
+            $product->price = $request->price;
+            $product->category_id = $request->category;
+            $product->subcategory_id = $request->subcategory;
+            $product->save();
+        }
+        notify()->success('Product updated successfully');
+        return redirect()->route('product.index');
     }
 
     /**
