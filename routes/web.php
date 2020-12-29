@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 Route::resource('category','CategoryController');
 Route::resource('subcategory','SubcategoryController');
-
+Route::resource('product','ProductController');
 
 //Route::get('/index', function () {
 //    return view('admin.dashboard');

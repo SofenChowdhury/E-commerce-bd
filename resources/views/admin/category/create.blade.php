@@ -46,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <div class="custom-file">
-                                <label class="custom-file-label" for="customFile">Choose file (png or jpg or jpeg only)</label>
+                                <label class="custom-file-label" for="customFile">Choose image file (png or jpg or jpeg only)</label>
                                 <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="customFile" >
                                 @error('image')
                                 <span class="invalid-feedback" role="alert">
