@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin.dashboard');
 });
+Route::get('subcategories/{id}','ProductController@loadSubcategories');
 Route::resource('category','CategoryController');
 Route::resource('subcategory','SubcategoryController');
 Route::resource('product','ProductController');

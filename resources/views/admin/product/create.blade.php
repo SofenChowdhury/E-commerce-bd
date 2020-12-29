@@ -88,11 +88,55 @@
                                     </span>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="category">Subcategory</label>
+                            <select name="subcategory" class="form-control @error('subcategory') is-invalid @enderror">
+                                <option value="">Select Subcategory</option>
+{{--                                @foreach(App\Subcategory::all() as $subcategory)--}}
+{{--                                    <option value="{{$subcategory->id}}">--}}
+{{--                                        {{$subcategory->name}}--}}
+{{--                                    </option>--}}
+{{--                                @endforeach--}}
+                            </select>
+{{--                            @error('subcategory')--}}
+{{--                            <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                            @enderror--}}
+                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </form>
-
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous">
+
+    </script>Query
+    <script type="text/javascript">
+        $("document").ready(function () {
+            $('select[name="category"]').on('change',function () {
+               var categoryId = $(this).val();
+               if(categoryId){
+                   $.ajax({
+                       url:'/subcategories/'+categoryId,
+                       type:'GET',
+                       dataType:'json',
+                       success:function (data) {
+                           $('select[name="subcategory"]').empty();
+                           $.each(data,function (key,value) {
+                               $('select[name="subcategory"]').append(
+                                   '<option value=" '+key+' ">'+value+'</option>'
+                               )
+                           })
+                       }
+                   })
+               }else{
+                   $('select[name="subcategory"]').empty();
+               }
+            });
+        });
+    </script>
+
 @endsection
