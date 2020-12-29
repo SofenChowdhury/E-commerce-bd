@@ -20,13 +20,13 @@
             <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">@csrf
                 <div class="card mb-6">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Create Product</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Update Product</h6>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">Name</label>
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="" aria-describedby=""
-                                   placeholder="Enter name of product">
+                                   placeholder="Enter name of product" value="{{$product->name}}">
                             @error('name')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -35,7 +35,8 @@
                         </div>
                         <div class="form-group">
                             <div class="custom-file">
-                                <label class="custom-file-label" for="customFile">Choose image file (png or jpg or jpeg only)</label>
+                                <label class="custom-file-label" for="customFile">Choose image file (png or jpg or jpeg only)</label><br><br>
+                                <center><img src="{{Storage::url($product->image)}}" width="100"></center>
                                 <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="customFile" >
                                 @error('image')
                                 <span class="invalid-feedback" role="alert">
@@ -46,7 +47,9 @@
                         </div>
                         <div class="form-group">
                             <label for="">Description</label>
-                            <textarea id="summernote" name="description" class="form-control @error('description') is-invalid @enderror" placeholder="Enter description of product"></textarea>
+                            <textarea id="summernote" name="description" class="form-control @error('description') is-invalid @enderror" placeholder="Enter description of product">
+                                {!! $product->description !!}
+                            </textarea>
                             @error('description')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -56,7 +59,7 @@
                         <div class="form-group">
                             <label for="">Price</label>
                             <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="" aria-describedby=""
-                                   placeholder="Enter price of product">
+                                   placeholder="Enter price of product" value="{{$product->price}}">
                             @error('price')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -65,7 +68,9 @@
                         </div>
                         <div class="form-group">
                             <label for="">Additional Information</label>
-                            <textarea id="summernote1" name="additional_info" class="form-control @error('additional_info') is-invalid @enderror" placeholder="Enter additional_info of product"></textarea>
+                            <textarea id="summernote1" name="additional_info" class="form-control @error('additional_info') is-invalid @enderror" placeholder="Enter additional_info of product">
+                                {!! $product->additional_info !!}
+                            </textarea>
                             @error('additional_info')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -107,24 +112,24 @@
     <script type="text/javascript">
         $("document").ready(function () {
             $('select[name="category"]').on('change',function () {
-               var categoryId = $(this).val();
-               if(categoryId){
-                   $.ajax({
-                       url:'/subcategories/'+categoryId,
-                       type:'GET',
-                       dataType:'json',
-                       success:function (data) {
-                           $('select[name="subcategory"]').empty();
-                           $.each(data,function (key,value) {
-                               $('select[name="subcategory"]').append(
-                                   '<option value=" '+key+' ">'+value+'</option>'
-                               )
-                           })
-                       }
-                   })
-               }else{
-                   $('select[name="subcategory"]').empty();
-               }
+                var categoryId = $(this).val();
+                if(categoryId){
+                    $.ajax({
+                        url:'/subcategories/'+categoryId,
+                        type:'GET',
+                        dataType:'json',
+                        success:function (data) {
+                            $('select[name="subcategory"]').empty();
+                            $.each(data,function (key,value) {
+                                $('select[name="subcategory"]').append(
+                                    '<option value=" '+key+' ">'+value+'</option>'
+                                )
+                            })
+                        }
+                    })
+                }else{
+                    $('select[name="subcategory"]').empty();
+                }
             });
         });
     </script>

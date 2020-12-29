@@ -26,6 +26,8 @@
                             <th>Additional Information</th>
                             <th>Price</th>
                             <th>Category</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,6 +40,14 @@
                                     <td>{!!$product->additional_info!!}</td>
                                     <td>{{$product->price}}TK</td>
                                     <td>{{$product->category->name}}</td>
+                                    <td>
+                                        <a href="{{route('product.edit',[$product->id])}}">
+                                            <button class="btn btn-primary">Edit</button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger">Delete</button>
+                                    </td>
                                 </tr>
                             @endforeach
                         @else
