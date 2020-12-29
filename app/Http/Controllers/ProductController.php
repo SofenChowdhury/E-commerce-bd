@@ -129,9 +129,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $filename = $product->image;
+        $product->delete();
+        \Storage::delete($filename);
+        notify()->success('Product deleted successfully');
+        return redirect()->route('product.index');
     }
     public function loadSubcategories(Request $request,$id){
         $subcategory = Subcategory::where('category_id',$id)->pluck('name','id');
