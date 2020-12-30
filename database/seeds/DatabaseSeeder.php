@@ -81,5 +81,14 @@ class DatabaseSeeder extends Seeder
             'phone_number'=>'01847330008',
             'is_admin'=>1
         ]);
+        User::create([
+            'name'=>'EcomUser',
+            'email'=>'user@gmail.com',
+            'password'=>bcrypt('password'),
+            'email_verified_at'=>NOW(),
+            'address'=>'Dhaka',
+            'phone_number'=>'01847330008',
+            'is_admin'=>0
+        ]);
     }
 }

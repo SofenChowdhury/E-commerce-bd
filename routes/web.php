@@ -12,14 +12,25 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('admin.dashboard');
+    return view('welcome');
 });
-Route::get('subcategories/{id}','ProductController@loadSubcategories');
-Route::resource('category','CategoryController');
-Route::resource('subcategory','SubcategoryController');
-Route::resource('product','ProductController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
+    function (){
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard');
+        });
+        Route::get('subcategories/{id}','ProductController@loadSubcategories');
+        Route::resource('category','CategoryController');
+        Route::resource('subcategory','SubcategoryController');
+        Route::resource('product','ProductController');
+    });
+
 
 //Route::get('/index', function () {
 //    return view('admin.dashboard');
@@ -29,6 +40,4 @@ Route::resource('product','ProductController');
 //    return view('test');
 //});
 //
-//Auth::routes();
-//
-//Route::get('/home', 'HomeController@index')->name('home');
+
