@@ -25,11 +25,11 @@ Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
         Route::get('/dashboard', function () {
             return view('admin.dashboard');
         });
-        Route::get('subcategories/{id}','ProductController@loadSubcategories');
+        
         Route::resource('category','CategoryController');
         Route::resource('subcategory','SubcategoryController');
         Route::resource('product','ProductController');
     });
-
+Route::get('subcategories/{id}','ProductController@loadSubcategories');
 
 
