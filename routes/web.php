@@ -32,12 +32,4 @@ Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
     });
 
 
-//Route::get('/index', function () {
-//    return view('admin.dashboard');
-//});
-//
-//Route::get('/index/test', function () {
-//    return view('test');
-//});
-//
 
