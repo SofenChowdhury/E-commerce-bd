@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 Route::get('/', 'FrontProductListController@index');
+Route::get('/product/{id}', 'FrontProductListController@show');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
