@@ -10,7 +10,8 @@ class FrontProductListController extends Controller
         $products = Product::get();
         return view('product',compact('products'));
     }
-    public function show(){
-        return view('show');
+    public function show($id){
+        $product = Product::find($id);
+        return view('show',compact('product'));
     }
 }

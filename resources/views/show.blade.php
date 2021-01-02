@@ -7,36 +7,36 @@
                 <aside class="col-sm-5 border-right">
                     <section class="gallery-wrap">
                         <a href="#">
-                            <img src="{{asset('images/gaming.jpg')}}" width="100%" height="100%">
+                            <img src="{{Storage::url($product->image)}}" width="100%" height="100%">
                         </a>
                     </section>
                 </aside>
                 <aside class="col-sm-7">
                     <section class="card-body p-5">
                         <h3 class="title mb-3">
-                            Name of the product
+                            {{$product->name}}
                         </h3>
                         <p class="price-detail-wrap">
                             <span class="price h3 text-danger">
                                 <span class="currency">
-                                    BD TK 888
+                                    BD<span>{{$product->price}}</span>TK
                                 </span>
                             </span>
                         </p>
                         <h3>Description</h3>
-                        <p>Description of the product</p>
+                        <p>{!! $product->description !!}</p>
                         <h3>Additional Information</h3>
-                        <p>Additional information of the product</p>
+                        <p>{!! $product->additional_info !!}</p>
                         <hr>
-                        <div class="row">
-                            <div class="form-inline">
-                                <h3 class="m-2">Quantity</h3>
-                                <input type="number" name="quantity" class="form-control" placeholder="Putting-down quantity">
-                                <input type="submit" class="btn btn-outline-primary m-2">
-                            </div>
-                        </div>
-                        <hr>
-                        <a href="#" class="btn btn-lg btn-primary text-uppercase">
+{{--                        <div class="row">--}}
+{{--                            <div class="form-inline">--}}
+{{--                                <h3 class="m-2">Quantity</h3>--}}
+{{--                                <input type="number" name="quantity" class="form-control" placeholder="Putting-down quantity">--}}
+{{--                                <input type="submit" class="btn btn-outline-primary m-2">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <hr>--}}
+                        <a href="#" class="btn btn-lg btn-outline-primary text-uppercase">
                             Add to card
                         </a>
                     </section>
