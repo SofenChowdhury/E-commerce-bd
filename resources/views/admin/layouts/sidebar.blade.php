@@ -113,12 +113,38 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </li>--}}
-{{--    <li class="nav-item">--}}
-{{--        <a class="nav-link" href="charts.html">--}}
-{{--            <i class="fas fa-fw fa-chart-area"></i>--}}
-{{--            <span>Charts</span>--}}
-{{--        </a>--}}
-{{--    </li>--}}
+
+    <li class="nav-item dropdown">
+        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            <i class="far fa-fw fa-window-maximize"></i>
+            <span>{{ Auth::user()->name }}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
+    </li>
+    <br>
+    <li class="nav-item">
+        <a class="dropdown-item" href="{{ route('logout') }}"
+           onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>{{ ('Logout') }}</span>
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+    </li>
+
     <hr class="sidebar-divider">
     <div class="version" id="version-ruangadmin"></div>
 </ul>
