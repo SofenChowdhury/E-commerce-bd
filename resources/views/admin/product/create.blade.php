@@ -55,8 +55,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Price</label>
-                            <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="" aria-describedby=""
-                                   placeholder="Enter price of product">
+                            <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Enter price of product">
                             @error('price')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

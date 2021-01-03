@@ -24,18 +24,10 @@
                             </span>
                         </p>
                         <h3>Description</h3>
-                        <p>{!! $product->description !!}</p>
+                        {!! $product->description !!}
                         <h3>Additional Information</h3>
-                        <p>{!! $product->additional_info !!}</p>
+                        {!! $product->additional_info !!}
                         <hr>
-{{--                        <div class="row">--}}
-{{--                            <div class="form-inline">--}}
-{{--                                <h3 class="m-2">Quantity</h3>--}}
-{{--                                <input type="number" name="quantity" class="form-control" placeholder="Putting-down quantity">--}}
-{{--                                <input type="submit" class="btn btn-outline-primary m-2">--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <hr>--}}
                         <a href="#" class="btn btn-lg btn-outline-primary text-uppercase">
                             Add to card
                         </a>
@@ -43,5 +35,41 @@
                 </aside>
             </div>
         </div>
+        @if(count($productFromSameCategories) > 0)
+        <div class="jumbotron">
+            <h3>You may like</h3>
+            <div class="row">
+                @foreach($productFromSameCategories as $product)
+                    <div class="col-4">
+                        <div class="card shadow-sm">
+                            <img src="{{Storage::url($product->image)}}" width="100%" height="100%">
+                            <div class="card-body">
+                                <p><b>{{$product->name}}</b></p>
+                                <p class="card-text">
+                                    {{Str::limit($product->description, 120)}}
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="{{route('product.view',[$product->id])}}">
+                                            <button type="button" class="btn btn-sm btn-outline-success">View</button>
+                                        </a>
+
+                                        <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    </div>
+                                    <small class="text-muted">{{$product->price}}TK</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        @else
+            <div class="jumbotron">
+                <div class="row">
+                    <h3>No Product From Same Category</h3>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection

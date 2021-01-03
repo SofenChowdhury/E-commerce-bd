@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 Route::get('/', 'FrontProductListController@index');
-Route::get('/product/{id}', 'FrontProductListController@show');
+Route::get('/product/{id}', 'FrontProductListController@show')->name('product.view');
 
 Auth::routes();
 
