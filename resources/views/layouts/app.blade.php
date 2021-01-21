@@ -39,7 +39,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        <a href="#" class="nav-link">
+                        <a href="/auth/dashboard" class="nav-link">
                             <span class="fas fa-shopping-cart">0</span>
                         </a>
 
