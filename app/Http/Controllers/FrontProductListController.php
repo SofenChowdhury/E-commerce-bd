@@ -28,18 +28,23 @@ class FrontProductListController extends Controller
         return view('show',compact('product','productFromSameCategories'));
     }
     public function allProduct(Request $request,$name){
+        $filterSubcategories = [];
         $category = Category::where('slug',$name)->first();
+        $categoryId = $category->id;
         if($request->subcategory){
             //filter products
             $products = $this->filterProducts($request);
             $filterSubcategories = $this->getSubcategoriesId($request);
+        }elseif ($request->min||$request->max){
+//            $filterSubcategories = [];
+            $products = $this->filterByPrice($request);
         }else{
-            $filterSubcategories = [];
+//            $filterSubcategories = [];
             $products = Product::where('category_id',$category->id)->get();
         }
         $subcategories = Subcategory::where('category_id',$category->id)->get();
         $slug = $name;
-        return view('category',compact('products','subcategories','slug','filterSubcategories'));
+        return view('category',compact('products','subcategories','slug','filterSubcategories','categoryId'));
     }
     public function filterProducts(Request $request){
         $subId = [];
@@ -57,5 +62,10 @@ class FrontProductListController extends Controller
             array_push($subId,$sub->id);
         }
         return $subId;
+    }
+    public function filterByPrice(Request $request){
+        $categoryId = $request->categoryId;
+        $product = Product::whereBetween('price',[$request->min,$request->max])->where('category_id',$categoryId)->get();
+        return $product;
     }
 }

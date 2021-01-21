@@ -17,8 +17,24 @@
                     </p>
                     @endforeach
                     {{--end foreach--}}
-                    <input type="submit" value="Filter" class="btn btn-success">
+                    <input type="submit" value="Filter" class="btn btn-secondary">
                 </form>
+                <hr>
+                <h3>Filter by price</h3>
+
+                <form action="{{route('product.list',[$slug])}}" method="GET">
+                    <input type="number" name="min" class="form-control" placeholder="min" required="">
+                    <br>
+                    <input type="number" name="max" class="form-control" placeholder="max" required="">
+                    <input type="hidden" name="categoryId" value="{{$categoryId}}">
+                    <br><br>
+                    <input type="submit" value="Filter" class="btn btn-secondary">
+                </form>
+
+
+
+
+
 
             </div>
             <div class="col-md-10">
