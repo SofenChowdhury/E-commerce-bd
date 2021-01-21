@@ -9,8 +9,11 @@
                     {{--foreach subcategories--}}
                     @foreach($subcategories as $subcategory)
                     <p>
-                        <input type="checkbox" name="subcategory[]" value="{{$subcategory->id}}">
-                        {{$subcategory->name}}
+                        <input type="checkbox" name="subcategory[]" value="{{$subcategory->id}}"
+                        @if(isset($filterSubcategories))
+                            {{in_array($subcategory->id,$filterSubcategories)?'checked ="checked" ':''}}
+                        @endif
+                        >{{$subcategory->name}}
                     </p>
                     @endforeach
                     {{--end foreach--}}

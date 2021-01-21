@@ -32,12 +32,14 @@ class FrontProductListController extends Controller
         if($request->subcategory){
             //filter products
             $products = $this->filterProducts($request);
+            $filterSubcategories = $this->getSubcategoriesId($request);
         }else{
+            $filterSubcategories = [];
             $products = Product::where('category_id',$category->id)->get();
         }
         $subcategories = Subcategory::where('category_id',$category->id)->get();
         $slug = $name;
-        return view('category',compact('products','subcategories','slug'));
+        return view('category',compact('products','subcategories','slug','filterSubcategories'));
     }
     public function filterProducts(Request $request){
         $subId = [];
@@ -47,5 +49,13 @@ class FrontProductListController extends Controller
         }
         $products = Product::whereIn('subcategory_id',$subId)->get();
         return $products;
+    }
+    public function getSubcategoriesId(Request $request){
+        $subId = [];
+        $subcategory = Subcategory::whereIn('id',$request->subcategory)->get();
+        foreach ($subcategory as $sub){
+            array_push($subId,$sub->id);
+        }
+        return $subId;
     }
 }
