@@ -18,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'FrontProductListController@index');
 Route::get('/product/{id}', 'FrontProductListController@show')->name('product.view');
 
+
+Route::get('/product/name/{name}', 'FrontProductListController@allProduct')->name('product.list');
+
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

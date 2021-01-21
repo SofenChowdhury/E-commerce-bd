@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Category;
 use App\Product;
+use App\Subcategory;
 use Illuminate\Http\Request;
 
 class FrontProductListController extends Controller
@@ -24,5 +26,11 @@ class FrontProductListController extends Controller
             ->limit(3)
             ->get();
         return view('show',compact('product','productFromSameCategories'));
+    }
+    public function allProduct($name){
+        $category = Category::where('slug',$name)->first();
+        $products = Product::where('category_id',$category->id)->get();
+        $subcategories = Subcategory::where('category_id',$category->id)->get();
+        return view('category',compact('products','subcategories'));
     }
 }

@@ -43,7 +43,9 @@
             </section>
             <h2>Categories</h2>
             @foreach(App\Category::all() as $category)
-                <button class="btn btn-outline-secondary">{{$category->name}}</button>
+                <a href="{{route('product.list',[$category->slug])}}">
+                    <button class="btn btn-outline-secondary">{{$category->name}}</button>
+                </a>
             @endforeach
             <div class="album py-5 bg-light">
                 <div class="container">
@@ -95,7 +97,7 @@
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
-                                                    <a href="product/{{$product->id}}">
+                                                    <a href="{{route('product.view',[$product->id])}}">
                                                         <button type="button" class="btn btn-sm btn-outline-success">View</button>
                                                     </a>
 
@@ -122,7 +124,7 @@
                                                 </p>
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="btn-group">
-                                                        <a href="product/{{$product->id}}">
+                                                        <a href="{{route('product.view',[$product->id])}}">
                                                             <button type="button" class="btn btn-sm btn-outline-success">View</button>
                                                         </a>
 
