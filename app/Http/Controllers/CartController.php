@@ -26,6 +26,10 @@ class CartController extends Controller
         return redirect()->back()->with('message','added successfully');
     }
     
+    public function showCart(){
+        return view('cart');
+    }
+    
     public function index()
     {
         //
