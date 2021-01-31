@@ -18,6 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{--Notification for cart--}}
+    @notifyCss
+    @include('notify::messages')
+    @notifyJs
+
 </head>
 <body>
     <div id="app">
@@ -38,9 +44,16 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        {{--cart--}}
+                        <a href="#" class="nav-link">
+                            <span class="fas fa-shopping-cart">
+                                {{session()->has('cart')?session()->get('cart')->totalQty:'0'}}
+                            </span>
+                        </a>
+
                         <!-- Authentication Links -->
                         <a href="/auth/dashboard" class="nav-link">
-                            <span class="fas fa-shopping-cart">0</span>
+                            <span class="fas fa-sign">Auth</span>
                         </a>
 
                         @guest
