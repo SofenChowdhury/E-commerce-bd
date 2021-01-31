@@ -21,6 +21,7 @@ Route::get('/product/name/{name}', 'FrontProductListController@allProduct')->nam
 Route::get('/addToCart/{product}','CartController@addToCart')->name('add.cart');
 Route::get('/cart','CartController@showCart')->name('cart.show');
 Route::post('/products/{product}','CartController@updateCart')->name('cart.update');
+Route::post('/product/{product}','CartController@removeCart')->name('cart.remove');
 
 Auth::routes();
 

@@ -40,7 +40,9 @@
                     </form>
                 </td>
                 <td>
-                    <button class="btn btn-danger">Remove</button>
+                    <form action="{{route('cart.remove',$product['id'])}}" method="post">@csrf
+                        <button class="btn btn-danger">Remove</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

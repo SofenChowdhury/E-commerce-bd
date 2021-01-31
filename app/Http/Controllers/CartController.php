@@ -48,6 +48,18 @@ class CartController extends Controller
         return redirect()->back();
     }
     
+    public function removeCart(Product $product){
+        $cart = new Cart(session()->get('cart'));
+        $cart->remove($product->id);
+        if ($cart->totalQty <= 0){
+            session()->forget('cart');
+        }else{
+            session()->put('cart',$cart);
+        }
+        notify()->success('Cart Removed');
+        return redirect()->back();
+    }
+    
     public function index()
     {
         //
