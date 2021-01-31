@@ -20,6 +20,7 @@ Route::get('/product/{id}', 'FrontProductListController@show')->name('product.vi
 Route::get('/product/name/{name}', 'FrontProductListController@allProduct')->name('product.list');
 Route::get('/addToCart/{product}','CartController@addToCart')->name('add.cart');
 Route::get('/cart','CartController@showCart')->name('cart.show');
+Route::post('/products/{product}','CartController@updateCart')->name('cart.update');
 
 Auth::routes();
 

@@ -25,10 +25,12 @@
                 <td>{{$product['name']}}</td>
                 <td>TK {{$product['price']}}</td>
                 <td>
-                    <input type="number" name="qty" placeholder="   Input Qty" value="{{$product['qty']}}">
-                    <button class="btn btn-secondary btn-sm">
-                        <i class="fas fa-sync"></i> update
-                    </button>
+                    <form action="{{route('cart.update',$product['id'])}}" method="post">@csrf
+                        <input type="number" name="qty" placeholder="   Input Qty" value="{{$product['qty']}}">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-sync"></i> update
+                        </button>
+                    </form>
                 </td>
                 <td>
                     <button class="btn btn-danger">Remove</button>

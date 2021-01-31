@@ -36,8 +36,17 @@ class Cart extends Model
             $this->totalPrice += $product->price;
         }else{
             $this->totalQty += 1;
-            $this->totalPrice += $this->totalPrice;
+            $this->totalPrice += $product->price;
         }
         $this->items[$product->id]['qty'] += 1;
+    }
+    
+    public function updateQty($id,$qty){
+        $this->totalQty -= $this->items[$id]['qty'];
+        $this->totalPrice -= $this->items[$id]['price'] * $this->items[$id]['qty'];
+        //add the items with new qty
+        $this->items[$id]['qty'] = $qty;
+        $this->totalQty += $qty;
+        $this->totalPrice += $this->items[$id]['price'] * $qty;
     }
 }

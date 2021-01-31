@@ -36,6 +36,14 @@ class CartController extends Controller
         return view('cart',compact('cart'));
     }
     
+    public function updateCart(Request $request, Product $product){
+        $cart = new Cart(session()->get('cart'));
+        $cart->updateQty($product->id,$request->qty);
+        session()->put('cart',$cart);
+        notify()->success('Cart Updated');
+        return redirect()->back();
+    }
+    
     public function index()
     {
         //
