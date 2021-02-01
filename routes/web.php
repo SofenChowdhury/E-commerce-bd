@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 //});
 Route::get('/', 'FrontProductListController@index');
 Route::get('/product/{id}', 'FrontProductListController@show')->name('product.view');
+Route::get('/checkout/{amount}','CartController@checkout')->name('cart.checkout')->middleware('auth');
 Route::get('/products/{name}', 'FrontProductListController@allProduct')->name('product.list');
 Route::get('/addToCart/{product}','CartController@addToCart')->name('add.cart');
 Route::get('/cart','CartController@showCart')->name('cart.show');

@@ -60,6 +60,10 @@ class CartController extends Controller
         return redirect()->back();
     }
     
+    public function checkout($amount){
+        return view('checkout',compact('amount'));
+    }
+    
     public function index()
     {
         //
