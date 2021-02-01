@@ -30,6 +30,7 @@
             background-color: #fefde5 !important;
         }
     </style>
+
     <div class="container">
         <div class="col-md-8">
             <div class="card">
@@ -37,7 +38,7 @@
                     Check-Out
                 </div>
                 <div class="card-body">
-                    <form action="#" method="post" id="payment-form">@csrf
+                    <form action="/charge" method="post" id="payment-form">@csrf
                         <div class="form-group">
 
                             <label>Name</label>
@@ -94,13 +95,13 @@
     <script type="text/javascript">
         // Create a Stripe client.
         window.onload=function(){
-            var stripe = Stripe('pk_test_no5YZwniXP4Qw4l5HKzJi3fS');
+            var stripe = Stripe('pk_test_51IFyyNLCb6PAl6RBQ13hlygPhXX9Vek7iCzC850CQTBC8ILjseO68f3C8TnPRc151NnerMtIun4bNdNRFwAMccJ100u1FlbXfQ');
 
-    // Create an instance of Elements.
+        // Create an instance of Elements.
             var elements = stripe.elements();
 
-    // Custom styling can be passed to options when creating an Element.
-    // (Note that this demo uses a wider set of styles than the guide below.)
+        // Custom styling can be passed to options when creating an Element.
+        // (Note that this demo uses a wider set of styles than the guide below.)
             var style = {
                 base: {
                     color: '#32325d',
@@ -117,13 +118,13 @@
                 }
             };
 
-    // Create an instance of the card Element.
+        // Create an instance of the card Element.
             var card = elements.create('card', {style: style});
 
-    // Add an instance of the card Element into the `card-element` <div>.
+        // Add an instance of the card Element into the `card-element` <div>.
             card.mount('#card-element');
 
-    // Handle real-time validation errors from the card Element.
+        // Handle real-time validation errors from the card Element.
             card.addEventListener('change', function(event) {
                 var displayError = document.getElementById('card-errors');
                 if (event.error) {
@@ -133,7 +134,7 @@
                 }
             });
 
-    // Handle form submission.
+        // Handle form submission.
             var form = document.getElementById('payment-form');
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -158,7 +159,7 @@
                 });
             });
 
-    // Submit the form with the token ID.
+        // Submit the form with the token ID.
             function stripeTokenHandler(token) {
                 // Insert the token ID into the form so it gets submitted to the server
                 var form = document.getElementById('payment-form');

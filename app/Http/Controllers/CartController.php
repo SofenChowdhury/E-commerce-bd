@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Cartalyst\Stripe\Exception\CardErrorException;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 class CartController extends Controller
 {
@@ -62,6 +64,29 @@ class CartController extends Controller
     
     public function checkout($amount){
         return view('checkout',compact('amount'));
+    }
+    
+    public function charge(Request $request){
+//        return $request->stripeToken;
+        
+        $charge = Stripe::charges()->create([
+            'currency'=>'BDT',
+            'source'=>$request->stripeToken,
+            'amount'=>$request->amount,
+            'description'=>'Test'
+        ]);
+        $chargeId = $charge['id'];
+        if ($chargeId){
+            auth()->user()->orders()->create([
+               'cart'=>serialize(session()->get('cart'))
+            ]);
+            session()->forget('cart');
+            notify()->success('Transaction Completed');
+            return redirect()->to('/');
+        }else{
+            return redirect()->back();
+        }
+        return 0;
     }
     
     public function index()
