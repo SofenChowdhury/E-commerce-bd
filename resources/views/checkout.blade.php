@@ -32,60 +32,96 @@
     </style>
 
     <div class="container">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    Check-Out
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">QTY</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if($cart)
+                        @php
+                            $i = 1;
+                        @endphp
+                        @foreach($cart->items as $product)
+                            <tr>
+                                <th scope="row">{{$i++}}</th>
+                                <td><img src="{{Storage::url($product['image'])}}" width="100"></td>
+                                <td>{{$product['name']}}</td>
+                                <td>{{$product['qty']}}</td>
+                                <td>TK {{$product['price']}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <hr>
+                <div class="card-footer">
+                    <button class="btn btn-primary">Continue Shopping</button>
+                    <span style="margin-left: 250px;">Total Price: {{$cart->totalPrice}} TK</span>
                 </div>
-                <div class="card-body">
-                    <form action="/charge" method="post" id="payment-form">@csrf
-                        <div class="form-group">
+                @endif
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Check-Out
+                    </div>
+                    <div class="card-body">
+                        <form action="/charge" method="post" id="payment-form">@csrf
+                            <div class="form-group">
 
-                            <label>Name</label>
-                            <input type="text" name="name" id="name" class="form-control" required="">
-                        </div>
-
-                        <div class="form-group">
-
-                            <label>Adress</label>
-                            <input type="text" name="address" id="address" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-
-                            <label>City</label>
-                            <input type="text" name="city" id="city" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-
-                            <label>State</label>
-                            <input type="text" name="state" id="state" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-
-                            <label>Postal code</label>
-                            <input type="text" name="postalcode" id="postalcode" class="form-control" required="">
-                        </div>
-                        <div class="">
-                            <input type="hidden" name="amount" value="{{$amount}}">
-
-
-{{--                            <button class="btn btn-primary mt-3">Submit Payment</button>--}}
-
-                            <div class="">
-                                <label for="card-element">
-                                    Credit or debit card
-                                </label>
-                                <div id="card-element">
-                                    <!-- A Stripe Element will be inserted here. -->
-                                </div>
-
-                                <!-- Used to display form errors. -->
-                                <div id="card-errors" role="alert"></div>
+                                <label>Name</label>
+                                <input type="text" name="name" id="name" class="form-control" required="">
                             </div>
 
-                            <button class="btn btn-primary mt-4" type="submit">Submit Payment</button>
-                        </div>
-                    </form>
+                            <div class="form-group">
+
+                                <label>Adress</label>
+                                <input type="text" name="address" id="address" class="form-control" required="">
+                            </div>
+                            <div class="form-group">
+
+                                <label>City</label>
+                                <input type="text" name="city" id="city" class="form-control" required="">
+                            </div>
+                            <div class="form-group">
+
+                                <label>State</label>
+                                <input type="text" name="state" id="state" class="form-control" required="">
+                            </div>
+                            <div class="form-group">
+
+                                <label>Postal code</label>
+                                <input type="text" name="postalcode" id="postalcode" class="form-control" required="">
+                            </div>
+                            <div class="">
+                                <input type="hidden" name="amount" value="{{$amount}}">
+
+
+                                {{--                            <button class="btn btn-primary mt-3">Submit Payment</button>--}}
+
+                                <div class="">
+                                    <label for="card-element">
+                                        Credit or debit card
+                                    </label>
+                                    <div id="card-element">
+                                        <!-- A Stripe Element will be inserted here. -->
+                                    </div>
+
+                                    <!-- Used to display form errors. -->
+                                    <div id="card-errors" role="alert"></div>
+                                </div>
+
+                                <button class="btn btn-primary mt-4" type="submit">Submit Payment</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -63,7 +63,12 @@ class CartController extends Controller
     }
     
     public function checkout($amount){
-        return view('checkout',compact('amount'));
+        if (session()->has('cart')){
+            $cart = new Cart(session()->get('cart'));
+        }else{
+            $cart = null;
+        }
+        return view('checkout',compact('amount','cart'));
     }
     
     public function charge(Request $request){
