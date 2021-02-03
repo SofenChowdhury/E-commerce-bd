@@ -28,7 +28,8 @@ Route::post('/product/{product}','CartController@removeCart')->name('cart.remove
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'FrontProductListController@index')->name('home');
 
 Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
     function (){
