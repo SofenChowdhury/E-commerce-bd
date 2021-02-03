@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use App\Mail\Sendmail;
 
 class CartController extends Controller
 {
@@ -73,15 +74,24 @@ class CartController extends Controller
     
     public function charge(Request $request){
 //        return $request->stripeToken;
+
+//        $charge = Stripe::charges()->create([
+//            'currency'=>"BDT",
+//            'source'=>$request->stripeToken,
+//            'amount'=>$request->amount,
+//            'description'=>'Test'
+//        ]);
+//        $chargeId = $charge['id'];
+    
+        if (session()->has('cart')){
+            $cart = new Cart(session()->get('cart'));
+        }else{
+            $cart = null;
+        }
+        \Mail::to(auth()->user()->email)->send(new Sendmail($cart));
         
-        $charge = Stripe::charges()->create([
-            'currency'=>'BDT',
-            'source'=>$request->stripeToken,
-            'amount'=>$request->amount,
-            'description'=>'Test'
-        ]);
-        $chargeId = $charge['id'];
-        if ($chargeId){
+//        if ($chargeId){
+        if ($request){
             auth()->user()->orders()->create([
                'cart'=>serialize(session()->get('cart'))
             ]);
