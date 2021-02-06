@@ -3,8 +3,7 @@
 @section('content')
 
     <div class="container">
-
-        <form>
+        <form action="{{route('more.product')}}" method="GET">
             <div class="form-row">
                 <div class="col-md-8">
                     <input type="text" name="search" class="form-control" placeholder="search...">
@@ -30,7 +29,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a href="product/{{$product->id}}">
+                                        <a href="{{route('product.view',[$product->id])}}">
                                             <button type="button" class="btn btn-sm btn-outline-success">View</button>
                                         </a>
                                         <a href="{{route('add.cart',[$product->id])}}">

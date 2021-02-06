@@ -63,7 +63,7 @@
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
-                                                <a href="product/{{$product->id}}">
+                                                <a href="{{route('product.view',[$product->id])}}">
                                                     <button type="button" class="btn btn-sm btn-outline-success">View</button>
                                                 </a>
                                                 <a href="{{route('add.cart',[$product->id])}}">
