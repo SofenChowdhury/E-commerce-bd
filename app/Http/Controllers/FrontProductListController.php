@@ -68,4 +68,8 @@ class FrontProductListController extends Controller
         $product = Product::whereBetween('price',[$request->min,$request->max])->where('category_id',$categoryId)->get();
         return $product;
     }
+    public function moreProducts(){
+        $products = Product::latest()->paginate(45);
+        return view('all-product',compact('products'));
+    }
 }

@@ -82,6 +82,17 @@
                     </div>
                 </div>
             </div>
+
+            <div>
+                <center>
+                    <a href="{{route('more.product')}}">
+                        <button class="btn btn-success">
+                            More Product
+                        </button>
+                    </a>
+                </center>
+            </div>
+            <br>
             <div class="jumbotron">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
