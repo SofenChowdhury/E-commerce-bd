@@ -120,9 +120,9 @@ class CartController extends Controller
         return view('admin.order.index',compact('orders'));
     }
     
-    public function viewUserOrder($id){
-        $user = \App\User::find($id);
-        $orders = $user->orders;
+    public function viewUserOrder($userId, $orderId){
+        $user = \App\User::find($userId);
+        $orders = $user->orders->where('id', $orderId);
         $carts = $orders->transform(function($cart,$key){
             return unserialize($cart->cart);
         });

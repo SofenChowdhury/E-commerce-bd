@@ -43,7 +43,7 @@
                                         <td>{{$order->user->email}}</td>
                                         <td>{{date('d-M-Y',strtotime($order->created_at))}}</td>
                                         <td>
-                                            <a href="{{route('user.order',[$order->user_id])}}">
+                                            <a href="{{route('user.order',[$order->user_id,$order->id])}}">
                                                 <button class="btn btn-info">
                                                     View Order
                                                 </button>
