@@ -8,6 +8,7 @@ use App\Product;
 use App\Cart;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use App\Mail\Sendmail;
+use App\Order;
 
 class CartController extends Controller
 {
@@ -102,13 +103,19 @@ class CartController extends Controller
             return redirect()->back();
         }
     }
-    
+    //For Order LoggedIn User
     public function order(){
         $orders = auth()->user()->orders;
         $carts = $orders->transform(function($cart,$key){
             return unserialize($cart->cart);
         });
         return view('order',compact('carts'));
+    }
+    
+    //For Admin
+    public function userOrder(){
+        $orders = Order::latest()->get();
+        return view('admin.order.index',compact('orders'));
     }
     
 }
