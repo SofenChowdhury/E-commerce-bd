@@ -35,14 +35,18 @@ Route::get('/home', 'FrontProductListController@index')->name('home');
 
 Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
     function (){
-        Route::get('/dashboard', function () {
+        Route::get('/dashboard', function (){
             return view('admin.dashboard');
         });
         
         Route::resource('category','CategoryController');
         Route::resource('subcategory','SubcategoryController');
         Route::resource('product','ProductController');
-    });
+        
+        Route::get('slider','SliderController@create');
+        Route::post('slider','SliderController@store')->name('slider.store');
+    }
+);
 Route::get('subcategories/{id}','ProductController@loadSubcategories');
 
 

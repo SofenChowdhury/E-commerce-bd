@@ -24,7 +24,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.slider.create');
     }
 
     /**
@@ -35,7 +35,15 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+           'image' => 'required|mimes:jpeg,jpg,png'
+        ]);
+        $image = $request->file('image')->store('public/slider');
+        Slider::create([
+            'image' => $image
+        ]);
+        notify()->success('Image uploaded successfully');
+        return redirect()->back();
     }
 
     /**
