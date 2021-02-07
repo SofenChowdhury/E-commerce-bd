@@ -14,7 +14,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        //
+        $sliders = Slider::get();
+        return view('admin.slider.index',compact('sliders'));
     }
 
     /**
@@ -86,8 +87,10 @@ class SliderController extends Controller
      * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Slider $slider)
+    public function destroy($id)
     {
-        //
+        Slider::find($id)->delete();
+        notify()->success('Image deleted successfully');
+        return redirect()->back();
     }
 }

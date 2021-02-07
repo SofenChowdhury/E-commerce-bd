@@ -43,8 +43,10 @@ Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
         Route::resource('subcategory','SubcategoryController');
         Route::resource('product','ProductController');
         
-        Route::get('slider','SliderController@create');
+        Route::get('slider/create','SliderController@create')->name('slider.create');
+        Route::get('slider','SliderController@index')->name('slider.index');
         Route::post('slider','SliderController@store')->name('slider.store');
+        Route::delete('slider/{id}','SliderController@destroy')->name('slider.destroy');
     }
 );
 Route::get('subcategories/{id}','ProductController@loadSubcategories');

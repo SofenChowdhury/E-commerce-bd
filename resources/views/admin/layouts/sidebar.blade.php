@@ -59,6 +59,21 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse"  data-target="#collapseBootstrapSlider"
+           aria-expanded="true"  aria-controls="collapseBootstrapSlider">
+            <i class="far fa-fw fa-window-maximize"></i>
+            <span>Slider</span>
+        </a>
+        <div  id="collapseBootstrapSlider" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Slider</h6>
+                <a class="collapse-item" href="{{route('slider.index')}}">View</a>
+                <a class="collapse-item" href="{{route('slider.create')}}">Create</a>
+            </div>
+        </div>
+    </li>
+
 {{--    <li class="nav-item">--}}
 {{--        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"--}}
 {{--           aria-controls="collapseForm">--}}
