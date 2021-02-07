@@ -62,11 +62,11 @@
                         @endif
 
                         <!-- Authentication Links -->
-                        <li class="nav-item">
-                            <a href="/auth/dashboard" class="nav-link">
-                                <span class="fas fa-sign">Auth</span>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="/auth/dashboard" class="nav-link">--}}
+{{--                                <span class="fas fa-sign">Auth</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                         @guest
                             <li class="nav-item">

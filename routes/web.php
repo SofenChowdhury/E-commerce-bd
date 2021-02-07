@@ -30,8 +30,7 @@ Auth::routes();
 
 Route::get('all/products','FrontProductListController@moreProducts')->name('more.product');
 
-//Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home', 'FrontProductListController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
     function (){
