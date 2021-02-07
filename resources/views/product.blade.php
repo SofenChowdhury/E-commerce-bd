@@ -3,45 +3,46 @@
 @section('content')
     <div class="container">
         <main>
-{{--            <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">--}}
-{{--                <ol class="carousel-indicators">--}}
-{{--                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>--}}
-{{--                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>--}}
-{{--                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>--}}
-{{--                </ol>--}}
-{{--                <div class="carousel-inner">--}}
-{{--                    <div class="carousel-item active">--}}
-{{--                        <img class="d-block w-100" src="images/gaming.jpg" alt="First slide">--}}
-{{--                    </div>--}}
-{{--                    <div class="carousel-item">--}}
-{{--                        <img class="d-block w-100" src="images/gaming.jpg" alt="Second slide">--}}
-{{--                    </div>--}}
-{{--                    <div class="carousel-item">--}}
-{{--                        <img class="d-block w-100" src="images/gaming.jpg" alt="Third slide">--}}
+{{--            <section class="jumbotron text-center container">--}}
+            <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    @foreach($sliders as $key => $slider)
+                        <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
+                            <img class="d-block w-100" src="{{Storage::url($slider->image)}}">
+                        </div>
+                    @endforeach
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+{{--            </section>--}}
+            <br>
+{{--            <section class="jumbotron text-center container">--}}
+{{--                <div class="row py-lg-5">--}}
+{{--                    <div class="col-lg-6 col-md-8 mx-auto">--}}
+{{--                        <h1 class="fw-light">Album example</h1>--}}
+{{--                        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>--}}
+{{--                        <p>--}}
+{{--                            <a href="#" class="btn btn-primary my-2">Main call to action</a>--}}
+{{--                            <a href="#" class="btn btn-secondary my-2">Secondary action</a>--}}
+{{--                        </p>--}}
 {{--                    </div>--}}
 {{--                </div>--}}
-{{--                <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">--}}
-{{--                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
-{{--                    <span class="sr-only">Previous</span>--}}
-{{--                </a>--}}
-{{--                <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">--}}
-{{--                    <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
-{{--                    <span class="sr-only">Next</span>--}}
-{{--                </a>--}}
-{{--            </div>--}}
-            <section class="py-5 text-center container">
-                <div class="row py-lg-5">
-                    <div class="col-lg-6 col-md-8 mx-auto">
-                        <h1 class="fw-light">Album example</h1>
-                        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-                        </p>
-                    </div>
-                </div>
-            </section>
+{{--            </section>--}}
             <h2>Categories</h2>
+            <br>
             @foreach(App\Category::all() as $category)
                 <a href="{{route('product.list',[$category->slug])}}">
                     <button class="btn btn-outline-secondary">{{$category->name}}</button>
