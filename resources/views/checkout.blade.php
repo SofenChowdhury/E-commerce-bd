@@ -73,11 +73,11 @@
                         Check-Out
                     </div>
                     <div class="card-body">
-                        <form action="/charge" method="post" id="">@csrf {{--id="payment-form"--}}
+                        <form action="{{route('cart.charge')}}" method="post" id="">@csrf {{--id="payment-form"--}}
                             <div class="form-group">
 
                                 <label>Name</label>
-                                <input type="text" name="name" id="" class="form-control" required=""> {{--id="name"--}}
+                                <input readonly value="{{auth()->user()->name}}" type="text" name="name" id="" class="form-control" required=""> {{--id="name"--}}
                             </div>
 
                             <div class="form-group">

@@ -46,7 +46,8 @@ Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
         Route::get('slider','SliderController@index')->name('slider.index');
         Route::post('slider','SliderController@store')->name('slider.store');
         Route::delete('slider/{id}','SliderController@destroy')->name('slider.destroy');
-    }
+        Route::get('users','UserController@index')->name('user.index');
+}
 );
 Route::get('subcategories/{id}','ProductController@loadSubcategories');
 
