@@ -47,7 +47,8 @@ Route::group(['prefix'=>'auth','middleware'=>['auth','isAdmin']],
         Route::post('slider','SliderController@store')->name('slider.store');
         Route::delete('slider/{id}','SliderController@destroy')->name('slider.destroy');
         Route::get('users','UserController@index')->name('user.index');
-        Route::get('/orders','CartController@userOrder');
+        Route::get('/orders','CartController@userOrder')->name('order.index');
+        Route::get('/orders/{id}','CartController@viewUserOrder')->name('user.order');
     }
 );
 Route::get('subcategories/{id}','ProductController@loadSubcategories');

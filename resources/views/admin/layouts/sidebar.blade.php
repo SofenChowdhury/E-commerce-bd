@@ -75,6 +75,20 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse"  data-target="#collapseBootstrapOrder"
+           aria-expanded="true"  aria-controls="collapseBootstrapOrder">
+            <i class="far fa-fw fa-window-maximize"></i>
+            <span>User Order</span>
+        </a>
+        <div  id="collapseBootstrapOrder" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Order</h6>
+                <a class="collapse-item" href="{{route('order.index')}}">View</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse"  data-target="#collapseBootstrapUser"
            aria-expanded="true"  aria-controls="collapseBootstrapUser">
             <i class="far fa-fw fa-window-maximize"></i>
@@ -84,7 +98,6 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Customers</h6>
                 <a class="collapse-item" href="{{route('user.index')}}">View</a>
-{{--                <a class="collapse-item" href="{{route('user.create')}}">Create</a>--}}
             </div>
         </div>
     </li>

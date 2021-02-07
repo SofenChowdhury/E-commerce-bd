@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Cartalyst\Stripe\Exception\CardErrorException;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use App\Mail\Sendmail;
 use App\Order;
+
 
 class CartController extends Controller
 {
@@ -118,4 +120,12 @@ class CartController extends Controller
         return view('admin.order.index',compact('orders'));
     }
     
+    public function viewUserOrder($id){
+        $user = \App\User::find($id);
+        $orders = $user->orders;
+        $carts = $orders->transform(function($cart,$key){
+            return unserialize($cart->cart);
+        });
+        return view('admin.order.show',compact('carts'));
+    }
 }
